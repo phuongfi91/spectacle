@@ -227,6 +227,19 @@ void SpectacleConfig::setAutoSaveLocation(const QString &location)
     mGeneralConfig.sync();
 }
 
+// copy image to clipboard after taking
+
+bool SpectacleConfig::copyImageToClipboardAfterTaking() const
+{
+    return mGeneralConfig.readEntry(QStringLiteral("copyImageAfterTaking"), false);
+}
+
+void SpectacleConfig::setCopyImageToClipboardAfterTaking(bool enabled)
+{
+    mGeneralConfig.writeEntry(QStringLiteral("copyImageAfterTaking"), enabled);
+    mGeneralConfig.sync();
+}
+
 // copy save location to clipboard
 
 bool SpectacleConfig::copySaveLocationToClipboard() const

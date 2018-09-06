@@ -34,6 +34,12 @@ GeneralOptionsPage::GeneralOptionsPage(QWidget *parent) :
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
+    // copy image to clipboard after taking
+
+    mCopyImageToClipboardAfterTaking = new QCheckBox(i18n("Copy image to clipboard after taking"), this);
+    connect(mCopyImageToClipboardAfterTaking, &QCheckBox::toggled, this, &GeneralOptionsPage::markDirty);
+    mainLayout->addWidget(mCopyImageToClipboardAfterTaking, 1);
+
     // copy save path to clipboard
 
     mCopyPathToClipboard = new QCheckBox(i18n("Copy save location to the clipboard"), this);
@@ -87,6 +93,7 @@ void GeneralOptionsPage::saveChanges()
     cfgManager->setUseLightRegionMaskColour(mUseLightBackground->checkState() == Qt::Checked);
     cfgManager->setRememberLastRectangularRegion(mRememberRect->checkState() == Qt::Checked);
     cfgManager->setCopySaveLocationToClipboard(mCopyPathToClipboard->checkState() == Qt::Checked);
+    cfgManager->setCopyImageToClipboardAfterTaking(mCopyImageToClipboardAfterTaking->checkState() == Qt::Checked);
 
     mChangesMade = false;
 }
@@ -98,6 +105,7 @@ void GeneralOptionsPage::resetChanges()
     mUseLightBackground->setChecked(cfgManager->useLightRegionMaskColour());
     mRememberRect->setChecked(cfgManager->rememberLastRectangularRegion());
     mCopyPathToClipboard->setChecked(cfgManager->copySaveLocationToClipboard());
+    mCopyImageToClipboardAfterTaking->setChecked(cfgManager->copyImageToClipboardAfterTaking());
 
     mChangesMade = false;
 }

@@ -46,6 +46,7 @@ class GeneralOptionsPage : public SettingsPage
     QCheckBox *mRememberRect;
     QCheckBox *mUseLightBackground;
     QCheckBox *mCopyPathToClipboard;
+    QCheckBox *mCopyImageToClipboardAfterTaking;
 };
 
 #endif // GENERALOPTIONSPAGE_H

@@ -96,6 +96,9 @@ class SpectacleConfig : public QObject
     QString autoSaveLocation() const;
     void setAutoSaveLocation(const QString &location);
 
+    bool copyImageToClipboardAfterTaking() const;
+    void setCopyImageToClipboardAfterTaking(bool enabled);
+
     bool copySaveLocationToClipboard() const;
     void setCopySaveLocationToClipboard(bool enabled);
 

@@ -182,6 +182,9 @@ void SpectacleCore::showErrorMessage(const QString &errString)
 void SpectacleCore::screenshotUpdated(const QPixmap &pixmap)
 {
     mExportManager->setPixmap(pixmap);
+    if (SpectacleConfig::instance()->copyImageToClipboardAfterTaking()) {
+        mExportManager->doCopyToClipboard();
+    }
 
     switch (mStartMode) {
     case BackgroundMode:
