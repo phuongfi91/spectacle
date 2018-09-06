@@ -52,7 +52,7 @@ class SaveOptionsPage : public SettingsPage
     KUrlRequester    *mUrlRequester;
     QComboBox        *mSaveImageFormat;
     QCheckBox        *mCopyPathToClipboard;
-
+    QCheckBox        *mCopyImageToClipboardAfterTaking;
 };
 
 #endif // SAVEOPTIONSPAGE_H

@@ -51,6 +51,12 @@ SaveOptionsPage::SaveOptionsPage(QWidget *parent) :
 
     dirLayout->addLayout(urlRequesterLayout);
 
+    // copy image to clipboard after taking
+
+    mCopyImageToClipboardAfterTaking = new QCheckBox(i18n("Copy image to clipboard after taking"), this);
+    connect(mCopyImageToClipboardAfterTaking, &QCheckBox::toggled, this, &SaveOptionsPage::markDirty);
+    dirLayout->addWidget(mCopyImageToClipboardAfterTaking, 1);
+
     // copy file location to clipboard after saving
 
     mCopyPathToClipboard = new QCheckBox(i18n("Copy file location to clipboard after saving"), this);
@@ -158,6 +164,7 @@ void SaveOptionsPage::saveChanges()
     cfgManager->setAutoSaveFilenameFormat(mSaveNameFormat->text());
     cfgManager->setSaveImageFormat(mSaveImageFormat->currentText().toLower());
     cfgManager->setCopySaveLocationToClipboard(mCopyPathToClipboard->checkState() == Qt::Checked);
+    cfgManager->setCopyImageToClipboardAfterTaking(mCopyImageToClipboardAfterTaking->checkState() == Qt::Checked);
 
     // done
 
@@ -175,6 +182,7 @@ void SaveOptionsPage::resetChanges()
     mSaveNameFormat->setText(cfgManager->autoSaveFilenameFormat());
     mUrlRequester->setUrl(QUrl::fromUserInput(cfgManager->autoSaveLocation()));
     mCopyPathToClipboard->setChecked(cfgManager->copySaveLocationToClipboard());
+    mCopyImageToClipboardAfterTaking->setChecked(cfgManager->copyImageToClipboardAfterTaking());
 
     // read in the save image format and calculate its index
 
